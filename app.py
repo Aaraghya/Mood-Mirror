@@ -6,7 +6,7 @@ import os
 import io
 import matplotlib.pyplot as plt
 
-# --- Mood to Color and Score Maps ---
+Color and Score Maps ---
 def apply_theme(mood):
     mood_colors_light = {
         "happy": "#FFFACD",
@@ -88,7 +88,7 @@ mood_map = {
     "happy": 5,
 }
 
-# --- App Setup ---
+
 st.set_page_config(page_title="Mood Mirror 💖", layout="centered")
 
 if "username" not in st.session_state:
@@ -100,7 +100,7 @@ if "journal_saved" not in st.session_state:
 
 apply_theme(st.session_state.mood or "neutral")
 
-# --- Step 1: Ask for Name ---
+
 if st.session_state.username == "":
     st.title("🪞 Mood Mirror")
     st.markdown("Hey, 👤 **Enter your name or nickname:**")
@@ -120,7 +120,7 @@ else:
     else:
         journal_data = []
 
-    # --- Step 2: Ask for Mood ---
+    
     if st.session_state.mood is None:
         st.markdown("## How are you feeling today?")
         moods = {
@@ -137,7 +137,7 @@ else:
                 st.session_state.mood = mood
                 st.rerun()
 
-    # --- Step 3: Show Affirmation ---
+    
     elif not st.session_state.journal_saved:
         affirmations = {
             "happy": ["Keep shining ✨", "Your joy is contagious!"],
@@ -151,7 +151,7 @@ else:
         st.markdown(f"<div class='glass-box glow-text'>💬 {affirmation}</div>", unsafe_allow_html=True)
         st.button("Next ➡️", on_click=lambda: st.session_state.update({"journal_saved": True}))
 
-    # --- Step 4: Journal + My Entries + Mood Graph + Export ---
+    
     else:
         st.markdown("### ✍️ Write about your day")
         journal_input = st.text_area("What's on your mind?", height=150, placeholder="You can write anything... or nothing at all.")
@@ -169,7 +169,7 @@ else:
                     json.dump(journal_data, f, indent=4)
                 st.success("✅ Journal saved!")
 
-        # --- My Entries Section ---
+        
         st.markdown("---")
         st.markdown("### 📖 My Entries")
         if journal_data:
@@ -193,7 +193,7 @@ else:
         else:
             st.info("No entries yet.")
 
-        # --- Mood Graph ---
+        
         st.markdown("### 📈 Mood Over Time")
         if journal_data:
             dates = [entry["date"] for entry in journal_data]
@@ -211,7 +211,7 @@ else:
         else:
             st.info("Add entries to see your mood graph.")
 
-        # --- Export Button ---
+        
         st.markdown("### 🛂 Export Your Journal")
         def generate_txt(entries):
             content = f"🪞 Mood Mirror Journal – {username}\n\n"
