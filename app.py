@@ -6,7 +6,6 @@ import os
 import io
 import matplotlib.pyplot as plt
 
-Color and Score Maps ---
 def apply_theme(mood):
     mood_colors_light = {
         "happy": "#FFFACD",
